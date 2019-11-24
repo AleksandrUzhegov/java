@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">org.sqlite.JDBC</property>
+        <property name="connection.url">jdbc:sqlite:main.db</property>
+        <property name="connection.pool_size">8</property>
+        <property name="dialect">org.hibernate.dialect.SQLiteDialect</property>
+        <property name="show_sql">false</property>
+        <property name="current_session_context_class">thread</property>
+
+        <mapping class="com.ertelecom.lesson_12.Task"/>
+    </session-factory>
+</hibernate-configuration>
