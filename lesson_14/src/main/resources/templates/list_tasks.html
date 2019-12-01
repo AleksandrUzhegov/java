@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Spring MVC GeekApp</title>
+</head>
+
+<body>
+    <h1>Список задач</h1>
+
+    <table style="width: 100%">
+        <tr>
+            <td>
+                <form th:action="@{/tasks/add}" method="GET">
+                    <input type="submit" value="Создать задачу" />
+                </form>
+            </td>
+            <td align="right">
+                <!-- Фильтр на список  -->
+                <form th:action="@{/tasks/show}" method="GET">
+                    <table>
+                        <tr>
+                            <td>Статус</td>
+                            <td>
+                                <select name="statusId">
+                                    <option value="" text="" />
+                                    <option th:each="s : ${statuses}"
+                                            th:value="${s.statusId}"
+                                            th:text="${s.rusTitle}"
+                                            th:selected="${s.statusId} == ${statusId} "  />
+                                </select>
+                            </td>
+                            <td rowspan="2"><input type="submit" value="Фильтр" /></td>
+                        </tr>
+                        <tr>
+                            <td>Владелец</td>
+                            <td><input name="ownerName" th:value="${ownerName}"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <!--   Список  -->
+    <table border="1" cellpadding="1" cellspacing="1" style="width: 100%">
+        <thead>
+        <tr>
+            <th>Идентификатор</th>
+            <th>Название задачи</th>
+            <th>Владелец</th>
+            <th>Исполнитель</th>
+            <th>Информация</th>
+            <th>Статус</th>
+            <th>Операция</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <!--/*@thymesVar id="tasks" type="java.util.List<com.ertelecom.lesson_14.Task>"*/-->
+
+        <tr th:each="t : ${tasks}" >
+            <td align="right" th:text="${t.id}"></td>
+            <td th:text="${t.taskName}"></td>
+            <td th:text="${t.ownerName}"></td>
+            <td th:text="${t.executorName}"></td>
+            <td th:text="${t.info}"></td>
+            <td th:text="${t.getStatus().rusTitle}"></td>
+            <td><a th:href="@{/tasks/edit/}+${t.id}">редактировать</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
