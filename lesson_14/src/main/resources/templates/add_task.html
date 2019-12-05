@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Spring MVC GeekApp</title>
+</head>
+
+<br>
+    <h1>Создание задачи</h1>
+
+    <!--/*@thymesVar id="task" type="com.ertelecom.lesson_14.Task"*/-->
+    <form th:action="@{/tasks/save}" th:object="${task}" method="POST">
+        <table>
+            <tr>
+                <td>Название задачи</td>
+                <td><input th:field="*{taskName}"/></td>
+            </tr>
+            <tr>
+                <td>Владелец</td>
+                <td><input th:field="*{ownerName}"/></td>
+            </tr>
+            <tr>
+                <td>Исполнитель</td>
+                <td><input th:field="*{executorName}"/></td>
+            </tr>
+            <tr>
+                <td>Информация</td>
+                <td><textarea th:field="*{info}"></textarea></td>
+            </tr>
+            <tr colspan="2">
+                <td><input type="submit" value="Создать" /></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <form th:action="@{/tasks/show}" method="GET">
+        <input type="submit" value="Вернуться в список" />
+    </form>
+
+</body>
+</html>
