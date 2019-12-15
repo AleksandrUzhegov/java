@@ -1,0 +1,23 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <g:DecoratorPanel>
+        <g:FormPanel ui:field="form" method="GET">
+            <g:HorizontalPanel>
+                <g:VerticalPanel spacing="10">
+                    <g:HorizontalPanel>
+                        <g:Label text="Статус:" width="100px"/>
+                        <g:ListBox name="statusId" ui:field="statusId"/>
+                    </g:HorizontalPanel>
+                    <g:HorizontalPanel>
+                        <g:Label text="Владелец:" width="100px"/>
+                        <g:TextBox name="owner" ui:field="ownerName"/>
+                    </g:HorizontalPanel>
+                </g:VerticalPanel>
+                <g:cell verticalAlignment="ALIGN_MIDDLE" width="100%">
+                    <g:Button ui:field="btnSubmit">Фильтр</g:Button>
+                </g:cell>
+            </g:HorizontalPanel>
+        </g:FormPanel>
+    </g:DecoratorPanel>
+</ui:UiBinder>
