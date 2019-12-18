@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Создание задачи</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<br>
+    <h1>Создание задачи</h1>
+
+    <!--/*@thymesVar id="task" type="com.ertelecom.lesson_14.Task"*/-->
+    <form th:action="@{/tasks/save}" th:object="${task}" method="POST">
+        <input type="hidden" th:field="*{status.statusId}"/>
+        <table>
+            <tr>
+                <td>Название задачи</td>
+                <td><input th:field="*{taskName}"/></td>
+            </tr>
+            <tr>
+                <td>Владелец</td>
+                <td>
+                    <select th:field="*{owner.userId}">
+                        <option th:each="s : ${users}" th:value="${s.userId}" th:text="${s.userName}" />
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Исполнитель</td>
+                <td>
+                    <select th:field="*{executor.userId}">
+                        <option th:each="s : ${users}" th:value="${s.userId}" th:text="${s.userName}" />
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Информация</td>
+                <td><textarea th:field="*{info}"></textarea></td>
+            </tr>
+            <tr colspan="2">
+                <td><input type="submit" value="Создать" /></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <form th:action="@{/tasks/show}" method="GET">
+        <input type="submit" value="Вернуться в список" />
+    </form>
+
+</body>
+</html>
