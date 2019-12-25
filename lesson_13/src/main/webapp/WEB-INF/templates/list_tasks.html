@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Spring MVC GeekApp</title>
+</head>
+
+<body>
+    <h1>Список задач</h1>
+
+    <p>
+        <a th:href="@{/add_task}">Создать задачу</a></p>
+        <a th:href="@{/}">на Главную страницу</a>
+    </p>
+
+    <table border="1" cellpadding="1" cellspacing="1" style="width: 100%">
+        <thead>
+        <tr>
+            <th>Идентификатор</th>
+            <th>Название задачи</th>
+            <th>Владелец</th>
+            <th>Исполнитель</th>
+            <th>Информация</th>
+            <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <!--/*@thymesVar id="tasks" type="java.util.List<com.ertelecom.lesson_13.Task>"*/-->
+
+        <tr th:each="t : ${tasks}" >
+            <td align="right" th:text="${t.id}"></td>
+            <td th:text="${t.taskName}"></td>
+            <td th:text="${t.ownerName}"></td>
+            <td th:text="${t.executorName}"></td>
+            <td th:text="${t.info}"></td>
+            <td th:text="${t.getStatus().rusTitle}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
